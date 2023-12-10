@@ -1,0 +1,113 @@
+10 15
+5 5   
+15 29 
+9 27 34
+38 2
+107
+A SP 4:4 1 1 9 Pregnant
+A NP 4:5 2 1 10 
+A WP 4:5 3 3 10 
+A SP 4:6 4 9 1 aged
+A SP 4:10 5 8 6 Pregnant
+A NP 4:11 6 8 4 
+A WP 4:13 7 9 2 
+A WP 4:14 8 1 4 
+A WP 4:16 9 2 7 
+A NP 4:18 10 8 5 
+A WP 4:20 11 1 2 
+A WP 4:25 12 3 10 
+A NP 4:29 13 9 1 
+L 4:30 13 9
+A NP 4:34 14 7 2 
+A WP 4:34 15 2 3 
+A SP 4:37 16 6 1 Pregnant
+A SP 4:37 17 10 1 Pregnant
+A WP 4:37 18 7 2 
+A SP 4:42 19 6 9 POD
+A SP 4:44 20 2 3 Pregnant
+A NP 4:48 21 3 5 
+A WP 4:50 22 4 8 
+L 4:52 6 8
+A SP 4:57 7 9 3 Pregnant
+A NP 5:0 8 3 8 
+A WP 5:2 9 5 4 
+A SP 5:2 10 8 9 POD
+A NP 5:5 11 4 9 
+A NP 5:9 12 4 6 
+A WP 5:10 13 2 9 
+A SP 5:10 14 7 1 Pregnant
+A SP 5:13 15 3 1 aged
+A SP 5:16 16 5 8 Pregnant
+A WP 5:18 17 1 8 
+A SP 5:21 18 10 7 Pregnant
+A NP 5:21 19 1 6 
+A NP 5:22 20 7 2 
+A SP 5:23 21 6 3 aged
+A SP 5:25 22 1 6 aged
+A SP 5:25 23 9 4 Pregnant
+A SP 5:26 24 5 9 aged
+A NP 5:26 25 4 2 
+A NP 5:28 26 9 5 
+L 5:33 25 4
+A NP 5:38 26 1 4 
+L 5:43 10 8
+A NP 5:45 11 2 6 
+A SP 5:48 12 6 4 POD
+A NP 5:50 13 9 5 
+A NP 5:52 14 4 7 
+A WP 5:56 15 3 8 
+A WP 5:58 16 9 5 
+A NP 6:0 17 1 8 
+A SP 6:1 18 2 6 aged
+A SP 6:4 19 2 8 POD
+A NP 6:7 20 10 2 
+A WP 6:8 21 3 7 
+A WP 6:11 22 10 2 
+A SP 6:15 23 10 7 POD
+A NP 6:16 24 5 1 
+A WP 6:21 25 3 10 
+A WP 6:23 26 1 6 
+A WP 6:24 27 5 10 
+A SP 6:25 28 10 4 Pregnant
+A WP 6:27 29 3 8 
+A WP 6:32 30 4 3 
+A WP 6:37 31 9 5 
+A SP 6:41 32 6 2 aged
+A WP 6:41 33 2 3 
+A NP 6:46 34 5 8 
+A NP 6:51 35 7 5 
+A NP 6:52 36 8 6 
+A SP 6:54 37 3 8 aged
+A NP 6:58 38 3 1 
+A SP 7:3 39 8 2 aged
+A NP 7:7 40 3 9 
+L 7:10 11 2
+A NP 7:15 12 3 10 
+A WP 7:17 13 10 6 
+A NP 7:20 14 1 5 
+A NP 7:25 15 7 6 
+A SP 7:28 16 2 1 Pregnant
+A SP 7:30 17 7 6 POD
+A SP 7:32 18 9 1 aged
+A NP 7:37 19 7 8 
+A NP 7:40 20 1 5 
+A NP 7:44 21 9 10 
+A SP 7:46 22 6 4 Pregnant
+A WP 7:50 23 5 1 
+A NP 7:50 24 6 9 
+A WP 7:51 25 7 1 
+A SP 7:52 26 1 7 POD
+A SP 7:55 27 1 5 POD
+A WP 7:59 28 7 2 
+A NP 7:59 29 2 6 
+A NP 8:2 30 1 3 
+A SP 8:6 31 7 5 aged
+A SP 8:11 32 1 4 aged
+A SP 8:12 33 7 4 POD
+A NP 8:12 34 8 6 
+A NP 8:17 35 5 6 
+A WP 8:19 36 6 9 
+A SP 8:19 37 10 1 aged
+A SP 8:23 38 3 10 POD
+A NP 8:25 39 2 3 
+A WP 8:30 40 2 3 
