@@ -4,7 +4,7 @@ class Stations {
 private:
 	StationNumberType stationNumber;
 	StationNumberType nextStation;
-	ContainerType<PassengerType> passengers;
+	ContainerType<PassengerType> waitingPassengers;
 
 public:
 	// Constructor
