@@ -9,7 +9,7 @@ private:
 public:
 	// Constructor
 	Stations(StationNumberType stationNo, NextStationType nextSt, const ContainerType<PassengerType>& passengerList)
-		: stationNumber(stationNo), nextStation(nextSt), passengers(passengerList) {}
+		: stationNumber(stationNo), nextStation(nextSt), waitingPassengers(passengerList) {}
 
 	// Getter methods
 	StationNumberType getStationNumber() const {
@@ -20,8 +20,8 @@ public:
 		return nextStation;
 	}
 
-	const ContainerType<PassengerType>& getPassengers() const {
-		return passengers;
+	const ContainerType<PassengerType>& getWaitingPassengers() const {
+		return waitingPassengers;
 	}
 
 	// Setter methods
@@ -33,7 +33,7 @@ public:
 		nextStation = newNextStation;
 	}
 
-	void setPassengers(const ContainerType<PassengerType>& newPassengerList) {
-		passengers = newPassengerList;
+	void setWaitingPassengers(const ContainerType<PassengerType>& newPassengerList) {
+		waitingPassengers = newPassengerList;
 	}
 };
