@@ -25,21 +25,6 @@ public:
 	}
 	
 
-	void PrintList()	const
-	{
-		cout<<"\nprinting passengers list:\n\n";
-		Node<T> *p = Head;
-
-		while(p)
-		{
-			cout << "[ " << p->getItem() << " ]";
-			cout << "--->";
-			p = p->getNext();
-		}
-		cout << "*\n";
-	}
-	
-
 	void InsertBeg(const T &data)
 	{
 		Node<T> *R = new Node<T>(data);
@@ -47,19 +32,6 @@ public:
 		Head = R;
 	}
 	
-
-	void DeleteAll()
-	{
-		Node<T> *P = Head;
-		while (Head)
-		{
-			P = Head->getNext();
-			delete Head;
-			Head = P;
-		}
-	}
-
-
 	void InsertEnd(const T &data)
 	{
 		Node<T> *R = new Node<T>(data);
@@ -67,9 +39,29 @@ public:
 		Head = R;
 	}
 
+
+	void Insert(const T &data)
+	{
+		Node<T> *R = new Node<T>(data);
+		Node<T> *P = Head;
+		Node<T> *Q = nullptr;
+		while(P && P->getItem() < data)
+		{
+			Q = P;
+			P = P->getNext();
+		}
+		if(Q == nullptr)
+		{
+			Head = R;
+		}
+		else
+		{
+			Q->setNext(R);
+		}
+		R->setNext(P);
+	}
+
 	
-
-
 	bool Find(const T &x)
 	{
 		Node<T> *p = Head;
@@ -88,7 +80,27 @@ public:
 
 	}
 
-void DeleteNode(const T &x) {
+
+	void DeleteFirst()
+	{
+		Node<T> *P = Head;
+		P = Head->getNext();
+		delete Head;
+		Head = P;
+	}
+
+	void DeleteLast()
+	{
+		Node<T> *P = Head;
+		while(Head)
+		{
+			P = Head->getNext();
+			delete Head;
+			Head = P;
+		}
+	}
+	
+	void DeleteNode(const T &x) {
     Node<T> *p = Head;
     Node<T> *q = nullptr;
 
@@ -111,33 +123,10 @@ void DeleteNode(const T &x) {
     }
 }
 
-
-	void CountOccurance(const T &x)
-	{
-		Node<T> *p = Head;
-		int count = 0;
-		while(p)
-		{
-			if (p->getItem() == x){
-			count++;
-			p = p->getNext();
-		}
-	}
-		cout << count;
-	}
-
-	void DeleteFirst()
+	void DeleteAll()
 	{
 		Node<T> *P = Head;
-		P = Head->getNext();
-		delete Head;
-		Head = P;
-	}
-
-	void DeleteLast()
-	{
-		Node<T> *P = Head;
-		while(Head)
+		while (Head)
 		{
 			P = Head->getNext();
 			delete Head;
@@ -155,6 +144,18 @@ void DeleteNode(const T &x) {
 			p = p->getNext();
 		}
 		return count;
+	}
+
+		void PrintList()	const
+	{
+		Node<T> *p = Head;
+		while(p)
+		{
+			cout << "[ " << p->getItem() << " ]";
+			cout << " , ";
+			p = p->getNext();
+		}
+		cout << "\n";
 	}
 
 };
