@@ -1,0 +1,55 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+class f_handler
+{
+	private:
+		int S; 		// number of stations
+		int ST; 	//time between each two successive stations
+		int WBus_count;
+		int MBus_count;
+		int WBus_capacity;
+		int MBus_capacity;
+		int J; 			//number of trips the bus completes before performing a checkup
+		int C_WBus;		// the check up duration in minutes for WBus
+		int C_MBus;		//the checkup duration in minutes for MBus
+		int maxW;		//maximum waiting time
+		int on_off_time;//get on/off time in seconds
+		int E; 			//number of events
+	public:
+		f_handler()
+		{
+			ifstream randomizer("random_file.txt");
+			string read;
+			randomizer>>S>>ST;
+			randomizer>>WBus_count>>MBus_count;
+			randomizer>>WBus_capacity>>MBus_capacity;
+			randomizer>>J>>C_WBus>>C_MBus;
+			randomizer>>maxW>>on_off_time;
+			randomizer>>E;
+			
+		}
+		/* void display()
+		{
+			cout<<S<<" "<<ST<<endl;
+			cout<<WBus_count<<" "<<MBus_count<<endl;
+			cout<<WBus_capacity<<" "<<MBus_capacity<<endl;
+			cout<<J<<" "<<C_WBus<<" "<<C_MBus<<endl;
+			cout<<maxW<<" "<<on_off_time<<endl;
+			cout<<E;
+		}
+		*/
+		int num_of_stations() { return S;}
+		int time_between_stations(){return ST;}
+		int W_count(){return WBus_count;}
+		int M_count(){return MBus_count;}
+		int W_capacity(){return WBus_capacity;}
+		int M_capacity(){return MBus_capacity;}
+		int num_before_checkup(){return J;}
+		int W_checkup_duration(){return C_Wbus;}
+		int M_checkup_duration(){return C_Mbus;}
+		int maximum_waiting_time(){return maxW;}
+		int get_on_off_time(){return on_off_time;}
+		
+};
