@@ -49,7 +49,7 @@ class bus{
             this->checkUpDuration = checkUpDuration;
         }
         void addPassenger(int passengerId){
-            currentPassengers.InsertBeg(passengerId);
+            currentPassengers.Insert(passengerId);
         }
         void removePassenger(int passengerId){
             currentPassengers.DeleteNode(passengerId);
