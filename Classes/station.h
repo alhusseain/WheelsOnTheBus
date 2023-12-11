@@ -1,39 +1,46 @@
+#ifndef STATION
+#define STATION
 
-template <typename StationNumberType, typename PassengerType >
+
+
+#include"priorityqueue.h"
+#include"Passengers.h"
 class Stations {
 private:
-	StationNumberType stationNumber;
-	StationNumberType nextStation;
-	ContainerType<PassengerType> waitingPassengers;
+	int  stationNumber;
+	int  nextStation;
+	LinkedList<passengers> waitingPassengers;
 
 public:
 	// Constructor
-	Stations(StationNumberType stationNo, NextStationType nextSt, const ContainerType<PassengerType>& passengerList)
+	Stations(int stationNo, int nextSt, LinkedList<passengers>& passengerList)
 		: stationNumber(stationNo), nextStation(nextSt), waitingPassengers(passengerList) {}
 
 	// Getter methods
-	StationNumberType getStationNumber() const {
+	int getStationNumber(){
 		return stationNumber;
 	}
 
-	NextStationType getNextStation() const {
+	int getNextStation() {
 		return nextStation;
 	}
 
-	const ContainerType<PassengerType>& getWaitingPassengers() const {
+	LinkedList<passengers>& getWaitingPassengers() {
 		return waitingPassengers;
 	}
 
 	// Setter methods
-	void setStationNumber(StationNumberType newStationNo) {
+	void setStationNumber(int newStationNo) {
 		stationNumber = newStationNo;
 	}
 
-	void setNextStation(NextStationType newNextStation) {
+	void setNextStation(int newNextStation) {
 		nextStation = newNextStation;
 	}
 
-	void setWaitingPassengers(const ContainerType<PassengerType>& newPassengerList) {
+	void setWaitingPassengers(LinkedList<passengers>& newPassengerList) {
 		waitingPassengers = newPassengerList;
 	}
 };
+
+#endif // !STATION
