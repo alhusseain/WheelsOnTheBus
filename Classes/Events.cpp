@@ -83,8 +83,8 @@ public:
 	int get_leave_station() { return leave_station; }
 	void execute(Stations& stationlist)
 	{
-		/*LinkedList<passengers> current_waiting = stationlist.getWaitingPassengers();
-		current_waiting.deletepassengers(ID);*/
+		LinkedList<passengers> current_waiting = stationlist.getWaitingPassengers();
+		Delete(current_waiting,ID);
 	}
 
 };
