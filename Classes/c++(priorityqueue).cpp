@@ -1,20 +1,39 @@
 #include <iostream>
+#include "Passengers.h"
 
-// Node class represents a node in the linked list
+using namespace std;
+
+template<class t>
 class Node {
 public:
-    int data;
+    t data;
     int priority;
 
-    Node* next; // Pointer to the next node in the list
+    Node<t>* next; 
 
     // Constructor to initialize the node with data and a null next pointer
-    Node(int value, int priorityvalue) : data(value), next(nullptr), priority(priorityvalue) {}
+    Node(t value, int priorityvalue) : data(value), next(nullptr), priority(priorityvalue) {}
+    
+    void setNext(Node<t>* nextNodePtr)
+	{
+		next = nextNodePtr;
+	}
+
+	t getItem() const
+	{
+		return data;
+	} 
+
+	Node<t>* getNext() const
+	{
+		return next;
+	}
 };
 
+template<class t>
 class LinkedList {
 private:
-    Node* head; // Pointer to the head node in the list
+    Node<t>* head; // Pointer to the head node in the list
 
 public:
     // constructor for an empty list
@@ -26,23 +45,29 @@ public:
         clear();
     }
 
-
-    void insertAtBeginning(int value, int priority) {
-        Node* newNode = new Node(value, priority); // Create a new node with the given data,and give it a priority
+    Node<t>* gethead() {
+        return head;
+     }
+    void insertAtBeginning(t value, int priority) {
+        Node<t>* newNode = new Node<t>(value, priority); // Create a new node with the given data,and give it a priority
         newNode->next = head; // Set the next pointer of the new node to the current head
         head = newNode; // Update the head to the new node
+    } void insertAfterBeginning(t value, int priority) {
+        Node<t>* newNode = new Node<t>(value, priority); // Create a new node with the given data,and give it a priority
+        newNode->next = head->next; // Set the next pointer of the new node to the current head
+        head->next = newNode; // Update the head to the new node
     }
 
     // Function to insert a new node with the given data at the end of the list
-    void insertAtEnd(int value, int priority) {
-        Node* newNode = new Node(value, priority); // Create a new node with the given data
+    void insertAtEnd(t value, int priority) {
+        Node<t>* newNode = new Node<t>(value, priority); // Create a new node with the given data
 
         // If the list is empty, make the new node the head
         if (head == nullptr) {
             head = newNode;
         }
         else {
-            Node* current = head;
+            Node<t>* current = head;
 
             // Traverse the list to the last node
             while (current->next != nullptr) {
@@ -55,19 +80,12 @@ public:
     }
 
     // Function to display the elements of the linked list
-    void display() {
-        Node* current = head; // Start at the head of the list
-        while (current != nullptr) { // Traverse the list until the end
-            std::cout << "(" << current->data << ", " << current->priority << ") ";
-            current = current->next; // Move to the next node
-        }
-        std::cout << std::endl;
-    }
+  
 
     // Function to delete all nodes in the linked list and free memory
     void clear() {
         while (head != nullptr) {
-            Node* temp = head; // Save the current head
+            Node<t>* temp = head; // Save the current head
             head = head->next; // Move to the next node
             delete temp; // Delete the saved node
         }
@@ -81,12 +99,12 @@ public:
             return -1;
         }
     }
-    void getpostionofequalpriority(int value, int priorityentered)
+    void getpostionofequalpriority(t value, int priorityentered)
     {
         while (head != nullptr)
         {
-            Node* current = head;
-            Node* newNode = new Node(value, priorityentered);
+            Node<t>* current = head;
+            Node<t>* newNode = new Node<t>(value, priorityentered);
             while (current->next != nullptr)
             {
                 if (current->next->priority != priorityentered)
@@ -108,25 +126,84 @@ public:
         }
     }
 
-    void dequeue() {
-        if (head != nullptr) {
-            Node* temp = head;
+    void dequeue(t value) {
+        Node<t>* current = head;
+        Node<t>* previous = nullptr;
+
+        while (current != nullptr && current->data != value) {
+            previous = current;
+            current = current->next;
+        }
+
+        if (current == head) {
             head = head->next;
-            delete temp;
+            delete current;
+        }
+        else if (current != nullptr) {
+            previous->next = current->next;
+            delete current;
         }
     }
+    
+int getLength()
+{
+    Node<t> *p = head;
+    int count = 0;
+    while(p)
+    {
+        count++;
+        p = p->getNext();
+    }
+    return count;
+}
+
+
+void displaypassengers(Node<passengers>*  head) {
+	Node<passengers>* current = head; // Start at the head of the list
+	while (current != nullptr) { // Traverse the list until the end
+		std::cout << "(" << current->data.getPassengerId() << ", " << current->priority << ") ";
+		current = current->next; // Move to the next node
+	}
+	std::cout << std::endl;
+}
+
+void deletepassengers(Node<passengers>* head,int targetid){
+		Node<passengers>* previous = nullptr;
+		Node<passengers>* current = head; // Start at the head of the list
+		while (current->data.getPassengerId() != targetid) { // Traverse the list l8ayt ama alaA2Y
+			previous = current;
+			current = current->next; // Move to the next node
+			if (current->data.getPassengerId() == targetid) {
+				previous->next = current->next;
+			
+				return;
+			}
+
+		
+		}
+		
+		
+	
+	
+	
+}
 };
 
-
+template<class t>
 class Queue {
 private:
-    LinkedList list;
+    LinkedList<t> list;
 public:
 
-    void enqueue(int value, int priority) {
-        if (priority < list.getHeadPriority() || priority == list.getHeadPriority() || list.getHeadPriority() == -1)
+    void enqueue(t value, int priority) {
+        if (priority < list.getHeadPriority() || list.getHeadPriority() == -1)
             list.insertAtBeginning(value, priority);
-        else
+         else if (priority == list.getHeadPriority()) {
+
+            list.insertAfterBeginning(value,priority);
+                
+        }
+        else 
             list.getpostionofequalpriority(value, priority);
     }
 
@@ -139,35 +216,7 @@ public:
     void display() {
         list.display(); // Display the linked list elements made specifically for the queues
     }
+    LinkedList<t> getlinkedlist() {
+        return list;
+    }
 };
-
-int main() {
-    Queue myQueue;
-
-    // Enqueue elements
-    myQueue.enqueue(5, 2);
-    std::cout << "Queue: ";
-    myQueue.display();
-
-
-    myQueue.enqueue(3, 1);
-    std::cout << "Queue: ";
-    myQueue.display();
-    myQueue.enqueue(7, 3);
-    std::cout << "Queue: ";
-    myQueue.display();
-    myQueue.enqueue(8, 4);
-    myQueue.enqueue(8, 3);
-    // Display the queue
-    std::cout << "Queue: ";
-    myQueue.display();
-
-    // Dequeue an element
-    myQueue.dequeue();
-
-    // Display the modified queue
-    std::cout << "Queue after dequeue: ";
-    myQueue.display();
-
-    return 0;
-}
