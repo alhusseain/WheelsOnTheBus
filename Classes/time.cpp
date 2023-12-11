@@ -11,6 +11,13 @@ private:
 	int count_to_delimiter;
 	int total_minutes;
 public:
+	time_def()
+	{
+		hours = NULL;
+		minutes = NULL;
+		count_to_delimiter = NULL;
+		total_minutes = NULL;
+	};
 	time_def(string time_string)
 	{
 		same_time = time_string;
@@ -23,6 +30,26 @@ public:
 		if (count_to_delimiter == 1)
 		{
 			hours = stoi(time_string.substr(0,1));
+			minutes = stoi(time_string.substr(2, time_string.size() - 2));
+		}
+		else {
+			hours = stoi(time_string.substr(0, 2));
+			minutes = stoi(time_string.substr(3, time_string.size() - 3));
+		}
+	}
+	 
+	void set_time(string time_string)
+	{
+		same_time = time_string;
+		count_to_delimiter = 0;
+		while (1)
+		{
+			if (time_string[count_to_delimiter] == ':') break;
+			else count_to_delimiter++;
+		}
+		if (count_to_delimiter == 1)
+		{
+			hours = stoi(time_string.substr(0, 1));
 			minutes = stoi(time_string.substr(2, time_string.size() - 2));
 		}
 		else {
