@@ -1,11 +1,14 @@
-#include"f_handler.cpp"
 #include"time.cpp"
+#include"station.h"
+
 class Event
 {
-private:
+protected:
+	char event_type;
 	time_def event_time;
 	int ID;
 public:
+	char get_event_type() { return event_type; }
 	Event(string time_string, int identity)
 	{
 		event_time.set_time(time_string);
@@ -21,14 +24,15 @@ public:
 		return ID;
 	}
 
-
+	virtual void execute();
 };
 
-class Arrival_event:public Event
+class Arrival_event:protected Event
 {
 private:
-	char event_type = 'A';
+	
 	int start_station, end_station;
+	string direction;
 	string passenger_type;
 	string special_description;
 public:
@@ -38,13 +42,14 @@ public:
 		this->end_station = end_station;
 		this->passenger_type = passenger_type;
 		this->special_description = special_description;
+		if ((this->end_station - this->start_station > 0)) direction = "FWD";
+		else direction = "BCK";
 
 	}
 	
-	char get_event_type() { return event_type; }
 	int get_start_station() { return start_station; }
 	int get_end_station() { return end_station; }
-
+	string get_direction() { return direction; }
 	string get_passenger_type()
 	{
 		return passenger_type;
@@ -54,12 +59,21 @@ public:
 	{
 		return special_description;
 	}
+
+	void execute(Stations &stationlist)
+	{
+		passengers NewPassenger(ID,passenger_type,special_description,direction,event_time);
+		LinkedList<passengers> current_waiting = stationlist.getWaitingPassengers();
+		if (current_waiting.gethead() == nullptr) {
+			current_waiting.insertAtBeginning(NewPassenger, NewPassenger.getPriorityNo());
+		}
+		else current_waiting.insertAfterBeginning(NewPassenger, NewPassenger.getPriorityNo());
+	}
 };
 
 class Leave_event :public Event
 {
 private:
-	char event_type = 'L';
 	int leave_station;
 public:
 	Leave_event(int y, string time_string, int identity) :Event(time_string, identity)
@@ -67,6 +81,11 @@ public:
 		leave_station = y;
 	}
 	int get_leave_station() { return leave_station; }
+	void execute(Stations& stationlist)
+	{
+		/*LinkedList<passengers> current_waiting = stationlist.getWaitingPassengers();
+		current_waiting.deletepassengers(ID);*/
+	}
 
 };
 
