@@ -1,3 +1,8 @@
+
+#ifndef TIME_D
+#define TIME_D
+
+
 #include <iostream>
 #include <string>
 #include<cstring>
@@ -13,10 +18,10 @@ private:
 public:
 	time_def()
 	{
-		hours = NULL;
-		minutes = NULL;
-		count_to_delimiter = NULL;
-		total_minutes = NULL;
+		hours = 0;
+		minutes = 0;
+		count_to_delimiter = 0;
+		total_minutes = 0;
 	};
 	time_def(string time_string)
 	{
@@ -76,23 +81,41 @@ public:
 
 	}
 
-	string operator+(time_def& x)
+	void operator+(time_def& x)
 	{
 		int current_class_minutes = convert_all_to_min();
 		int guest_class_minutes = x.convert_all_to_min();
 		int sum_minutes = current_class_minutes + guest_class_minutes;
-		return return_to_format_from_minutes(sum_minutes);
+		same_time=return_to_format_from_minutes(sum_minutes);
 	}
 
 
-	string operator-(time_def& x)
+	void operator-(time_def& x)
 	{
 		int current_class_minutes = convert_all_to_min();
 		int guest_class_minutes = x.convert_all_to_min();
 		int diff_minutes = abs(current_class_minutes - guest_class_minutes);
-		return return_to_format_from_minutes(diff_minutes);
+		same_time = return_to_format_from_minutes(diff_minutes);
 	}
 
+	bool operator==(time_def& x)
+	{
+		if (this->convert_all_to_min() == x.convert_all_to_min())
+		{
+			return true;
+
+		}
+		else return false;
+	}
+	bool operator!=(time_def& x)
+	{
+		if (convert_all_to_min() != x.convert_all_to_min())
+		{
+			return true;
+
+		}
+		else return false;
+	}
 
 	/*
 	void display()
@@ -108,3 +131,4 @@ int main()
 	cout << inter + inter2;
 }*/
 
+#endif
