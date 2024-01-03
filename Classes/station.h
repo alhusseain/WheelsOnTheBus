@@ -2,9 +2,8 @@
 #define STATION
 
 
+#include "c++(priorityqueue).cpp"
 
-#include"priorityqueue.h"
-#include"Passengers.h"
 class Stations {
 private:
 	int  stationNumber;

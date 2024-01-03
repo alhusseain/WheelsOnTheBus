@@ -21,23 +21,35 @@ private:
 public:
 
     passengers(/*int priority_no, */ int passenger_id1, string passenger_type1) {
-        passenger_id = passenger_id1;
-        passenger_type = passenger_type1;
+        this->passenger_id = passenger_id1;
+        this->passenger_type = passenger_type1;
 
 
 
-    }
-
-
-    int getPriorityNo() const {
-        return priority_no;
-    }
-    int getPassengerId() const {
-        return passenger_id;
     }
 
     std::string getPassengerType() const {
         return passenger_type;
+    }
+    
+    void setPriorityNo(int priority_no1) {
+        priority_no = priority_no1;
+    }
+
+    int getPriorityNo() {
+
+        if (passenger_type == "WP") {
+            priority_no = 1;
+        }
+        else if (passenger_type == "MP") {
+            priority_no = 0;
+        } else {
+            priority_no = -1;
+        }
+        return priority_no;
+    }
+    int getPassengerId() {
+        return passenger_id;
     }
 
     int getArrivalHours() const {
@@ -70,10 +82,6 @@ public:
 
     int getTripMinutes() const {
         return trip_minutes;
-    }
-
-    void setPriorityNo(int priority_no1) {
-        priority_no = priority_no1;
     }
 
 

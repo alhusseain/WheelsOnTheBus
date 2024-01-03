@@ -160,9 +160,9 @@ int getLength()
 
 void displaypassengers(Node<passengers>*  head) {
 	Node<passengers>* current = head; // Start at the head of the list
-	while (current != nullptr) { // Traverse the list until the end
+	while (current) { // Traverse the list until the end
 		std::cout << "(" << current->data.getPassengerId() << ", " << current->priority << ") ";
-		current = current->next; // Move to the next node
+		current = current->getNext(); // Move to the next node
 	}
 	std::cout << std::endl;
 }
