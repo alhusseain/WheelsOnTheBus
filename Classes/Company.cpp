@@ -2,9 +2,9 @@
 #include<fstream>
 #include<string>
 #include"passengers.h"
-#include"station.h"
 #include"Events.cpp"
-#include"priorityqueue.h"
+#include "bus.cpp"
+// #include"priorityqueue.h"
 using namespace std;
 class company
 {
@@ -34,16 +34,54 @@ class company
 		char* event_types;
 
 	public:
+
 		company()
 		{
 			ifstream randomizer("random_file.txt");
-			randomizer>>S>>ST;
-			randomizer>>WBus_count>>MBus_count;
-			randomizer>>WBus_capacity>>MBus_capacity;
-			randomizer>>J>>C_WBus>>C_MBus;
-			randomizer>>maxW>>on_off_time;
-			randomizer>>E;
-			
+			randomizer >> S >> ST;
+			randomizer >> WBus_count >> MBus_count;
+			randomizer >> WBus_capacity >> MBus_capacity;
+			randomizer >> J >> C_WBus >> C_MBus;
+			randomizer >> maxW >> on_off_time;
+			randomizer >> E;
+		}
+
+
+
+		void Moving(bus<passengers> bus) {
+			if (bus.getCurrentStation().getStationNumber() < bus.getDestinationStation().getStationNumber()) {
+				bus.getCurrentStation().setStationNumber(bus.getCurrentStation().getStationNumber() + 1);
+				bus.setIsMoving(true);
+				bus.IncrementNumberOfJourneysDone();
+			} else if (bus.getCurrentStation().getStationNumber() == bus.getDestinationStation().getStationNumber()) {
+				bus.setIsMoving(false);
+				return;
+			} else if (bus.getCurrentStation().getStationNumber() == 8 || time == "22:00") {
+				bus.getCurrentStation().setStationNumber(bus.getCurrentStation().getStationNumber() - 1);
+				bus.setIsMoving(true);
+				bus.IncrementNumberOfJourneysDone();
+			} else {
+				return;
+			}
+		}
+
+        void waitingAndMoving(bus<passengers> bus) {
+            if ((bus.isFull() || bus.getCurrentStation().getNumberOfWaitingPassengers() == 0) && bus.getDestinationStation().getNumberOfWaitingPassengers() != 10){
+                bus.setIsMoving(true);
+                Moving(bus);
+            }
+            else if (bus.getNumberOfPassengers() < bus.getMaxCapacity() && bus.getCurrentStation().getNumberOfWaitingPassengers() != 0){
+                bus.setIsMoving(false);
+                return;
+            } 
+            else if (bus.getNumberOfPassengers() < bus.getMaxCapacity() && bus.getCurrentStation().getNumberOfWaitingPassengers() == 0 ){
+                bus.setIsMoving(true);
+                Moving(bus);
+            } else {
+				return;
+			}
+        }
+
 	/*		event_types = new char[E];
 			for (int i = 0; i < E; i++)
 			{

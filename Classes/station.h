@@ -28,6 +28,10 @@ public:
 		return waitingPassengers;
 	}
 
+	int getNumberOfWaitingPassengers() {
+		return waitingPassengers.getLength();
+	}
+
 	// Setter methods
 	void setStationNumber(int newStationNo) {
 		stationNumber = newStationNo;
