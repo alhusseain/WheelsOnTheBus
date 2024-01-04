@@ -66,18 +66,20 @@ class company
 		}
 
         void waitingAndMoving(bus<passengers> bus) {
-            if ((bus.isFull() || bus.getCurrentStation().getNumberOfWaitingPassengers() == 0) && bus.getDestinationStation().getNumberOfWaitingPassengers() != 10){
+            if ((bus.isFull() || bus.getCurrentStation().getNumberOfWaitingPassengers() == 0) && bus.getDestinationStation().getHasBus() == false){
                 bus.setIsMoving(true);
                 Moving(bus);
             }
-            else if (bus.getNumberOfPassengers() < bus.getMaxCapacity() && bus.getCurrentStation().getNumberOfWaitingPassengers() != 0){
+            else if (bus.getNumberOfPassengers() < bus.getMaxCapacity() && bus.getCurrentStation().getNumberOfWaitingPassengers() != 0 && bus.getDestinationStation().getHasBus() == true){
                 bus.setIsMoving(false);
                 return;
             } 
-            else if (bus.getNumberOfPassengers() < bus.getMaxCapacity() && bus.getCurrentStation().getNumberOfWaitingPassengers() == 0 ){
+            else if (bus.getNumberOfPassengers() < bus.getMaxCapacity() && bus.getCurrentStation().getNumberOfWaitingPassengers() == 0 && bus.getDestinationStation().getHasBus() == false){
                 bus.setIsMoving(true);
                 Moving(bus);
-            } else {
+            } 
+			else if(bus.getDestinationStation().getHasBus() == true){
+				bus.setIsMoving(false);
 				return;
 			}
         }
