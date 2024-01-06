@@ -56,10 +56,24 @@ class company
 			} else if (bus.getCurrentStation().getStationNumber() == bus.getDestinationStation().getStationNumber()) {
 				bus.setIsMoving(false);
 				return;
-			} else if (bus.getCurrentStation().getStationNumber() == 8 || time == "22:00") {
+			} else if (bus.getCurrentStation().getStationNumber() == 8) {
 				bus.getCurrentStation().setStationNumber(bus.getCurrentStation().getStationNumber() - 1);
 				bus.setIsMoving(true);
 				bus.IncrementNumberOfJourneysDone();
+			} else if (bus.getCurrentStation().getStationNumber() > bus.getDestinationStation().getStationNumber()) {
+				bus.getCurrentStation().setStationNumber(bus.getCurrentStation().getStationNumber() - 1);
+				bus.setIsMoving(true);
+				bus.IncrementNumberOfJourneysDone();
+			} 
+
+		}
+
+		void timeHandlingBus(bus<passengers> bus) {
+			if (!bus.isEmpty() && time == "22:00") {
+				Moving(bus);9
+			} else if (bus.isEmpty() && time == "22:00"){
+				bus.setIsMoving(false);
+				return;
 			} else {
 				return;
 			}
